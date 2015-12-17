@@ -1,10 +1,12 @@
-import socket
+from socket import socket
+from socket import AF_INET
+from socket import SOCK_STREAM
 
 host = ''
 port = 8888
 
 def server(host, port):
-	sck = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	sck = socket(AF_INET, SOCK_STREAM)
 	sck.bind((host,port))
 	sck.listen(1)
 	conn, adr = sck.accept()
