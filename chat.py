@@ -15,7 +15,7 @@ def server(host, port):
 	sck.bind((host,port))
 	sck.listen(1)
 	conn, adr = sck.accept()
-	print ('Client Connected, IP : ', adr)
+	print ('Client Connected, IP11 : ', adr)
 	conn.close()
 
 def main(self):
