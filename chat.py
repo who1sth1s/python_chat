@@ -7,7 +7,7 @@ def client(HOST, PORT):
 	cs = socket(AF_INET, SOCK_STREAM)
 	cs.connect((HOST, PORT))
 	cs.send('Test')
-	data = cs.recv(8192)
+	#data = cs.recv(8192)
 	cs.close()
 
 def server(host, port):
