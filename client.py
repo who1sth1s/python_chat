@@ -13,7 +13,7 @@ def client(HOST, PORT):
 def main(self):
 	HOST = raw_input("Input server IP: ")
 	PORT = raw_input("Input server PORT: ")
-	client(HOST, PORT)
+	client(HOST, int(PORT))
 
 if __name__ == '__main__':
 	sys.exit(main(sys.argv))
