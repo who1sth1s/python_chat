@@ -21,14 +21,14 @@ def server(host, port):
 def main(self):
 	option = raw_input("(1)Creative chatting room\n(2)Join the chatting room\nInput: ")
 	if option == "1":
-		HOST = raw_input("Input your IP: ")
-		PORT = raw_input("Input open PORT: ")
-		server(HOST, PORT)
+		HOST = ''
+		PORT = input("Input open PORT: ")
+		server(HOST, int(PORT))
 		
 	elif option == "2":
 		HOST = raw_input("Input server IP: ")
-		PORT = raw_input("Input server PORT: ")
-		client(HOST, PORT)
+		PORT = input("Input server PORT: ")
+		client(HOST, int(PORT))
 
 if __name__ == '__main__':
 	sys.exit(main(sys.argv))
