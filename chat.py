@@ -1,22 +1,37 @@
-from socket import socket
-from socket import AF_INET
-from socket import SOCK_STREAM
+import socket
 import sys
+import os
+
 
 def client(HOST, PORT):
-	cs = socket(AF_INET, SOCK_STREAM)
+	os.system("clear")
+	cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	cs.connect((HOST, PORT))
 	#cs.send('Test')
 	#data = cs.recv(8192)
 	cs.close()
 
+
 def server(host, port):
-	sck = socket(AF_INET, SOCK_STREAM)
+	os.system("clear")
+	print """
+	   _____ _             _          _           _
+  / ____| |           | |        | |         | |
+ | (___ | |_ __ _ _ __| |_    ___| |__   __ _| |_
+  \___ \| __/ _` | '__| __|  / __| '_ \ / _` | __|
+  ____) | || (_| | |  | |_  | (__| | | | (_| | |_
+ |_____/ \__\__,_|_|   \__|  \___|_| |_|\__,_|\__|
+
+
+                                                	"""
+	print "%s"% socket.gethostbyname(socket.gethostname())
+	sck = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	sck.bind((host,port))
 	sck.listen(1)
 	conn, adr = sck.accept()
 	print ('Client Connected, IP11 : ', adr)
 	conn.close()
+
 
 def main(self):
 	option = raw_input("(1)Creative chatting room\n(2)Join the chatting room\nInput: ")
@@ -29,6 +44,7 @@ def main(self):
 		HOST = raw_input("Input server IP: ")
 		PORT = input("Input server PORT: ")
 		client(HOST, int(PORT))
+
 
 if __name__ == '__main__':
 	sys.exit(main(sys.argv))
