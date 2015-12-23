@@ -7,8 +7,15 @@ def client(HOST, PORT):
 	os.system("clear")
 	cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	cs.connect((HOST, PORT))
-	#cs.send('Test')
-	#data = cs.recv(8192)
+	while True:
+		msg = raw_input('msg >')
+		try:
+			if msg == '/exit':
+				cs.close()
+			cs.send(msg)
+		except:
+			cs.close()
+	
 	cs.close()
 
 
@@ -29,7 +36,13 @@ def server(host, port):
 	sck.bind((host,port))
 	sck.listen(1)
 	conn, adr = sck.accept()
-	print ('Client Connected, IP11 : ', adr)
+	print ('Client Connected, IP : ', adr)
+	while True:
+		data = conn.recv(1024)
+		if not data: break
+		conn.sendall(data)
+		print data
+		sck.close()
 	conn.close()
 
 
@@ -38,6 +51,7 @@ def main(self):
 	if option == "1":
 		HOST = ''
 		PORT = input("Input open PORT: ")
+		print socket.gethostbyname(socket.gethostname())
 		server(HOST, int(PORT))
 		
 	elif option == "2":
