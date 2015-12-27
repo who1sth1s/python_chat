@@ -5,14 +5,26 @@ import os
 
 def client(HOST, PORT):
 	os.system("clear")
+	print """
+	   _____ _             _          _           _
+  / ____| |           | |        | |         | |
+ | (___ | |_ __ _ _ __| |_    ___| |__   __ _| |_
+  \___ \| __/ _` | '__| __|  / __| '_ \ / _` | __|
+  ____) | || (_| | |  | |_  | (__| | | | (_| | |_
+ |_____/ \__\__,_|_|   \__|  \___|_| |_|\__,_|\__|
+
+
+                                                	"""
 	cs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	cs.connect((HOST, PORT))
 	while True:
-		msg = raw_input('msg >')
+		msg = raw_input(socket.gethostbyname(socket.gethostname())+' > ')
 		try:
 			if msg == '/exit':
 				cs.close()
 			cs.send(msg)
+			data = cs.recv(1024)
+			print HOST + " > " + data
 		except:
 			cs.close()
 	
@@ -36,12 +48,13 @@ def server(host, port):
 	sck.bind((host,port))
 	sck.listen(1)
 	conn, adr = sck.accept()
-	print ('Client Connected, IP : ', adr)
+	print ('Client Connected, IP : ', adr[0])
 	while True:
+		msg = raw_input(socket.gethostbyname(socket.gethostname())+' > ')
 		data = conn.recv(1024)
 		if not data: break
-		conn.sendall(data)
-		print data
+		conn.sendall(msg)
+		print adr[0] + " > " + data
 		sck.close()
 	conn.close()
 
